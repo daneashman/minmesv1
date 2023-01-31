@@ -4,24 +4,22 @@ import './assets/dist/js/bootstrap.bundle.min.js';
 // import './style.css';
 
 // Firebase App (the core Firebase SDK) is always required
-import { initializeApp } from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
 // Add the Firebase products and methods that you want to use
-import {
-  getAuth,
-  EmailAuthProvider,
-  signOut,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  PhoneAuthProvider,
-} from 'firebase/auth';
+// import {
+//   getAuth,
+//   EmailAuthProvider,
+//   signOut,
+//   onAuthStateChanged,
+//   GoogleAuthProvider,
+//   PhoneAuthProvider,
+// } from 'firebase/compat/auth';
+import 'firebase/compat/auth';
 
 import {} from 'firebase/firestore';
 
 import * as firebaseui from 'firebaseui';
-
-const login_with_email_button = document.getElementById('email');
-const login_with_phone_button = document.getElementById('phone');
 
 let db, auth;
 
@@ -36,8 +34,8 @@ async function main() {
     appId: '1:831252147765:web:c7c5e6b191ecb48107cb7c',
   };
 
-  const app = initializeApp(firebaseConfig);
-  auth = getAuth();
+  firebase.initializeApp(firebaseConfig);
+  auth = firebase.auth();
 
   const ui = new firebaseui.auth.AuthUI(auth);
 
@@ -46,16 +44,16 @@ async function main() {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [
       // Email / Password Provider.
-      EmailAuthProvider.PROVIDER_ID,
-      GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       {
-        provider: PhoneAuthProvider.PROVIDER_ID,
+        provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         recaptchaParameters: {
           type: 'image', // 'audio'
-          size: 'normal', // 'invisible' or 'compact'
+          size: 'invisible', // 'invisible' or 'compact'
           badge: 'bottomleft', //' bottomright' or 'inline' applies to invisible.
         },
-        defaultCountry: 'GB', // Set default country to the United Kingdom (+44).
+        defaultCountry: 'CA', // Set default country to the United Kingdom (+44).
         // For prefilling the national number, set defaultNationNumber.
         // This will only be observed if only phone Auth provider is used since
         // for multiple providers, the NASCAR screen will always render first
@@ -89,20 +87,6 @@ async function main() {
   };
 
   ui.start('#firebaseui-auth-container', uiConfig);
-
-  // Listen to email button clicks
-  login_with_email_button.addEventListener('click', () => {
-    if (auth.currentUser) {
-      // User is signed in; allows user to sign out
-      signOut(auth);
-      document.getElementById('or-row').style.display = 'block';
-      document.getElementById('phone').style.display = 'block';
-    } else {
-      // No user is signed in; allows user to sign in
-      document.getElementById('or-row').style.display = 'none';
-      document.getElementById('phone').style.display = 'none';
-    }
-  });
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
