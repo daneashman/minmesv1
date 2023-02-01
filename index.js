@@ -27,6 +27,7 @@ async function main() {
     storageBucket: 'minmesv1.appspot.com',
     messagingSenderId: '831252147765',
     appId: '1:831252147765:web:c7c5e6b191ecb48107cb7c',
+    measurementId: 'G-E2VTBHRKHB',
   };
 
   firebase.initializeApp(firebaseConfig);
