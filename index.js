@@ -1,8 +1,3 @@
-// Import stylesheets
-import './assets/dist/css/bootstrap.min.css';
-import './assets/dist/js/bootstrap.bundle.min.js';
-// import './style.css';
-
 // Firebase App (the core Firebase SDK) is always required
 import firebase from 'firebase/compat/app';
 
