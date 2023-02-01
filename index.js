@@ -2,14 +2,6 @@
 import firebase from 'firebase/compat/app';
 
 // Add the Firebase products and methods that you want to use
-// import {
-//   getAuth,
-//   EmailAuthProvider,
-//   signOut,
-//   onAuthStateChanged,
-//   GoogleAuthProvider,
-//   PhoneAuthProvider,
-// } from 'firebase/compat/auth';
 import 'firebase/compat/auth';
 
 import {} from 'firebase/firestore';
@@ -42,7 +34,7 @@ async function main() {
       {
         provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         recaptchaParameters: {
-          type: 'image', // 'audio'
+          type: '', // image or 'audio'
           size: 'invisible', // 'invisible' or 'compact'
           badge: 'bottomleft', //' bottomright' or 'inline' applies to invisible.
         },
@@ -54,11 +46,6 @@ async function main() {
         // Handle sign-in.
         // Return false to avoid redirect.
         return false;
-      },
-      uiShown: function () {
-        // The widget is rendered.
-        // Hide the loader.
-        // document.getElementById('loader').style.display = 'none';
       },
     },
   };
