@@ -76,19 +76,19 @@ async function main() {
       uiShown: function () {
         // The widget is rendered.
         // Hide the loader.
-        document.getElementById('loader').style.display = 'none';
+        // document.getElementById('loader').style.display = 'none';
       },
     },
   };
 
   ui.start('#firebaseui-auth-container', uiConfig);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      login_with_email_button.textContent = 'Logout';
-    } else {
-      login_with_email_button.textContent = 'Sign in with Email';
-    }
-  });
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     login_with_email_button.textContent = 'Logout';
+  //   } else {
+  //     login_with_email_button.textContent = 'Sign in with Email';
+  //   }
+  // });
 }
 main();
