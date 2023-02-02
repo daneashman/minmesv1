@@ -4,7 +4,7 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 ui.start('#firebaseui-auth-container', {
     signInOptions: [
       {
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         recaptchaParameters: {
           type: '', // 'audio'
           size: 'invisible', // 'invisible' or 'compact'
